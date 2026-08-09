@@ -59,7 +59,7 @@ pip install -r requirements.txt
 
 Needs a GPU for reasonable speed but will run on CPU for a small enough
 eval subset (see `--num-samples` below). Designed to be runnable on a
-single Colab GPU — no multi-GPU or large-batch training required, since
+single Colab GPU : no multi-GPU or large-batch training required, since
 the encoders stay frozen throughout (only the resampler has any trainable
 parameters, and it's small).
 
@@ -81,10 +81,9 @@ This produces:
 
 ## What "done" looks like for v1
 
-Not a finished research paper — a clean, reproducible first result:
+A clean, reproducible first result:
 one plot showing whether the accuracy-drop curve for CLIP diverges from
-the curve for DINOv2 as compression increases. That's the finding worth
-sharing with Dr. Khan and posting publicly. Later iterations can expand
+the curve for DINOv2 as compression increases. Later iterations can expand
 the task, add more encoders (SigLIP2, as used in MiniCPM-V 4.6 itself),
 or dig into *why* any divergence happens (e.g. attention entropy per encoder).
 
@@ -120,7 +119,7 @@ work showing DINOv2's self-supervised training spreads information
 redundantly across patches, while CLIP's contrastive objective
 concentrates it — see citations in the project discussion.
 
-## Limitations (honest, not hidden)
+## Limitations 
 
 - **Uneven statistical rigor across methods.** Pruning results are a
   proper 3-seed mean ± std. Early-merge and resampler results are each a
@@ -147,6 +146,8 @@ concentrates it — see citations in the project discussion.
 ## Status
 
 ✅ v1 complete — all three compression methods implemented and swept
-across both encoders; results and limitations above. Natural next steps:
+across both encoders; results and limitations above. 
+
+Natural next steps:
 multi-seed early-merge/resampler runs, matched ratios across methods, and
 a stronger downstream task (see Limitations).
