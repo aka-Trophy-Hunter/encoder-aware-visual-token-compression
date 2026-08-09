@@ -6,7 +6,7 @@ on *what kind of encoder* produced the tokens in the first place.
 
 ## Motivation
 
-Most token-compression papers report results on a single vision encoder.
+Most token-compression papers report results on a single vision encoder.F
 But encoders trained with different objectives learn different things:
 
 - **Contrastive encoders** (CLIP): tokens are shaped by image-text alignment,
@@ -14,7 +14,7 @@ But encoders trained with different objectives learn different things:
 - **Self-supervised encoders** (DINOv2): tokens are shaped by patch-level
   self-distillation, tend to carry more localized/spatial detail.
 
-If that's true, compressing them the same way might not be equally safe —
+If that's true, compressing them the same way might not be equally safe:
 DINOv2-style tokens might degrade faster under aggressive pruning because
 more of the useful signal is spread across individual patches rather than
 concentrated in a few salient ones.
@@ -75,8 +75,8 @@ python scripts/run_sweep.py \
 ```
 
 This produces:
-- `results/sweep_results.csv` — one row per (encoder, method, ratio) with the eval score
-- `results/tokens_vs_accuracy.png` — the core plot: accuracy vs. token-keep ratio,
+- `results/sweep_results.csv` : one row per (encoder, method, ratio) with the eval score
+- `results/tokens_vs_accuracy.png` : the core plot: accuracy vs. token-keep ratio,
   one line per (encoder, method) pair
 
 ## What "done" looks like for v1
@@ -99,7 +99,7 @@ feature space.
 Pruning declines steadily with compression (8.2% → 5.7% accuracy from
 100% → 10% tokens kept, 3-seed mean ± std). Early-merge and the learned
 resampler both underperform the uncompressed baseline. CLIP's absolute
-accuracy is low throughout (4-9%) in this nearest-centroid setup — its
+accuracy is low throughout (4-9%) in this nearest-centroid setup : its
 embedding space is optimized for image-text alignment, not this kind of
 comparison, so treat the exact numbers as noisy; the *declining* shape is
 the more trustworthy signal.
@@ -107,23 +107,23 @@ the more trustworthy signal.
 **DINOv2 ViT-S/14 (self-supervised):** a different and more interesting
 picture. Pruning still declines steadily (70.0% → 61.6%), but early-merge
 and the resampler both *improve* on the uncompressed baseline at moderate
-compression — the resampler's single trained result (72.1% at ~25% tokens)
+compression : the resampler's single trained result (72.1% at ~25% tokens)
 is the best-performing point in the entire DINOv2 panel.
 
 **Interpretation:** CLIP's patch tokens appear to have little redundancy
-for any of these methods to exploit — compression is a pure information
+for any of these methods to exploit : compression is a pure information
 loss. DINOv2's patch tokens appear to carry more redundant/noisy signal
 that smarter compression (spatial merging, learned queries) can filter
 out, actively helping rather than hurting. This is consistent with prior
 work showing DINOv2's self-supervised training spreads information
 redundantly across patches, while CLIP's contrastive objective
-concentrates it — see citations in the project discussion.
+concentrates it : see citations in the project discussion.
 
 ## Limitations 
 
 - **Uneven statistical rigor across methods.** Pruning results are a
   proper 3-seed mean ± std. Early-merge and resampler results are each a
-  single run — real, but their run-to-run variance is unmeasured.
+  single run : real, but their run-to-run variance is unmeasured.
 - **Ratios aren't matched across methods.** Pruning was tested at exactly
   100/50/25/10% kept. Early-merge can only hit ratios its square grid
   factors into cleanly (e.g. CLIP's 7x7 grid only offers 100% or ~2%).
@@ -131,7 +131,7 @@ concentrates it — see citations in the project discussion.
   Cross-method comparisons at "the same" ratio on the plot are
   approximate, not exact.
 - **The resampler is one trained instance per encoder**, not a swept
-  curve — a fuller study would train a separate resampler per target
+  curve : a fuller study would train a separate resampler per target
   ratio, the way pruning naturally supports any ratio.
 - **Small dataset and simple eval task.** 1500/1000 CIFAR-100 images
   (upsampled from 32x32 to 224x224) and nearest-centroid classification
@@ -145,7 +145,7 @@ concentrates it — see citations in the project discussion.
 
 ## Status
 
-✅ v1 complete — all three compression methods implemented and swept
+✅ v1 complete : all three compression methods implemented and swept
 across both encoders; results and limitations above. 
 
 Natural next steps:
