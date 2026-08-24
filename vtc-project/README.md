@@ -6,7 +6,7 @@ on *what kind of encoder* produced the tokens in the first place.
 
 ## Motivation
 
-Most token-compression papers report results on a single vision encoder.F
+Most token-compression papers report results on a single vision encoder.
 But encoders trained with different objectives learn different things:
 
 - **Contrastive encoders** (CLIP): tokens are shaped by image-text alignment,
