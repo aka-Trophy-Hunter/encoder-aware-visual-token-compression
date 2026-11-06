@@ -90,7 +90,7 @@ or dig into *why* any divergence happens (e.g. attention entropy per encoder).
 
 ## Results
 
-![FOMO comparison plot](results/fomo_comparison.png)
+![FOMO comparison plot](fomo_comparison.png)
 
 All experiments run on a CIFAR-100 subset (1500 train / 1000 eval images,
 zero overlap), classified by nearest-centroid matching in the compressed
